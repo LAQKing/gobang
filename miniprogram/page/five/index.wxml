@@ -1,0 +1,45 @@
+<view class="container page">
+    <view class="topBox">
+        <view class="box">
+            <image wx:if="{{img1}}" src="{{img1}}" class="img"></image>
+            <view wx:else class="noimg" bindtap="getUser"></view>
+            <view class="name">{{name1||'微信用户'}}</view>
+        </view>
+        <view class="box">
+            <view class="name">{{name2||'微信用户'}}</view>
+            <image wx:if="{{img2}}" src="{{img2}}" class="img"></image>
+            <view wx:else class="noimg" bindtap="getUser"></view>
+        </view>
+    </view>
+    <!-- 棋盘 -->
+    <view class="page-body">
+        <view class="boardBox">
+            <view wx:for="{{pieceArr}}" wx:key="index" id="{{item.colId}}" data-value="{{item.value}}" bindtap="clickRange"
+            class="board_column">
+                <view class="piece_column {{item.ches}} {{item.typeClass}}"></view>
+            </view>
+        </view>
+    </view>
+
+    <view class="btnBox">
+       <view class="edbtn" bindtap="aganFun">重新开始</view>
+       <!-- <view class="edbtn" bindtap="regretPiece">悔棋</view> -->
+    </view>
+</view>
+
+<!-- 弹窗选项 -->
+<view class="float_pop" wx:if="{{isShowChoose}}">
+  <view class="pop_bg"></view>
+  <view class="popBox">
+    <view class="btn" bindtap="aiPlay">AI对战</view>
+    <button type="primary" bindtap="aiPlay" class="btn btn2">开始游戏</button>
+  </view>
+</view>
+<!-- 获胜弹窗 -->
+<view class="float_pop" wx:if="{{isWin}}">
+  <view class="pop_bg"></view>
+  <view class="popBox">
+    <view class="winTxt">{{winTxt}}</view>
+    <button type="primary" bindtap="aganFun" class="btn btn2">再来一局</button>
+  </view>
+</view>
